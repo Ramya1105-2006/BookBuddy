@@ -26,10 +26,10 @@ export default function HomePage() {
   const top10Kollywood = movies.filter(m => m.language === 'Tamil').slice(0, 10);
   const top10Bollywood = movies.filter(m => m.language === 'Hindi').slice(0, 10);
   const top10Hollywood = movies.filter(m => m.language === 'English').slice(0, 10);
-  const topAction = movies.filter(m => m.genre.includes('Action')).slice(0, 10);
-  const topRomance = movies.filter(m => m.genre.includes('Romance')).slice(0, 10);
-  const topThriller = movies.filter(m => m.genre.includes('Thriller')).slice(0, 10);
-  const topSciFi = movies.filter(m => m.genre.includes('Sci-Fi')).slice(0, 10);
+  const topAction = getMoviesByGenre('Action').slice(0, 10);
+  const topRomance = getMoviesByGenre('Romance').slice(0, 10);
+  const topThriller = getMoviesByGenre('Thriller').slice(0, 10);
+  const topSciFi = getMoviesByGenre('Sci-Fi').slice(0, 10);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -41,8 +41,8 @@ export default function HomePage() {
           <section>
             <h2 className="text-3xl font-bold tracking-tighter mb-8 text-center">Top 10 Movies</h2>
              <Tabs defaultValue="kollywood" className="w-full">
-              <div className="flex justify-center">
-                <TabsList className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 mb-6">
+              <div className="flex justify-center mb-6">
+                <TabsList className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7">
                   <TabsTrigger value="kollywood">Kollywood</TabsTrigger>
                   <TabsTrigger value="bollywood">Bollywood</TabsTrigger>
                   <TabsTrigger value="hollywood">Hollywood</TabsTrigger>
