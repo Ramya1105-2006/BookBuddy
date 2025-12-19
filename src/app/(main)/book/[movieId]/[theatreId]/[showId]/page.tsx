@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 
-const SEAT_PRICE = 15;
+const SEAT_PRICE = 150;
 
 export default function SeatSelectionPage({ params }: { params: { movieId: string, theatreId: string, showId: string } }) {
   const router = useRouter();
@@ -100,12 +100,12 @@ export default function SeatSelectionPage({ params }: { params: { movieId: strin
                     <Separator />
                     <div className="flex justify-between text-lg font-bold">
                         <span>Total</span>
-                        <span>${totalAmount.toFixed(2)}</span>
+                        <span>₹{totalAmount.toFixed(2)}</span>
                     </div>
                 </CardContent>
                 <CardFooter>
                     <Button className="w-full" size="lg" onClick={handleConfirmBooking} disabled={isLoading || selectedSeats.length === 0}>
-                         {isLoading ? <Loader2 className="animate-spin" /> : `Pay $${totalAmount.toFixed(2)}`}
+                         {isLoading ? <Loader2 className="animate-spin" /> : `Pay ₹${totalAmount.toFixed(2)}`}
                     </Button>
                 </CardFooter>
             </Card>

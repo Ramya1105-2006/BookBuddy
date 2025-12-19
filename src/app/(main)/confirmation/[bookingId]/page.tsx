@@ -97,7 +97,7 @@ export default function ConfirmationPage() {
           
             <div className="flex justify-between text-xl font-bold">
                 <span>Total Amount Paid</span>
-                <span>${booking.totalAmount.toFixed(2)}</span>
+                <span>₹{booking.totalAmount.toFixed(2)}</span>
             </div>
         </CardContent>
       </Card>
