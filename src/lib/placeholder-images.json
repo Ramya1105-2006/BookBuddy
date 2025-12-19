@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "movie-poster-1",
+      "description": "Cosmic Odyssey Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1520034475321-cbe63696469a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcGFjZSUyMHN0YXJzfGVufDB8fHx8MTc2NjA0MzE2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "space stars"
+    },
+    {
+      "id": "movie-poster-2",
+      "description": "Cyberpunk City Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1534214526114-0ea4d47b04f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxuZW9uJTIwY2l0eXxlbnwwfHx8fDE3NjYxMTA2ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "neon city"
+    },
+    {
+      "id": "movie-poster-3",
+      "description": "The Last Kingdom Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1765528307828-8c8be48c03ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXN0bGUlMjBmYW50YXN5fGVufDB8fHx8MTc2NjEyMDQ5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "castle fantasy"
+    },
+    {
+      "id": "movie-poster-4",
+      "description": "Ocean's Depths Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1549074862-6173e20d02a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dW5kZXJ3YXRlciUyMG9jZWFufGVufDB8fHx8MTc2NjEyMDQ5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "underwater ocean"
+    },
+    {
+      "id": "movie-poster-5",
+      "description": "Jungle Quest Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1557945643-333d5e10a707?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxqdW5nbGUlMjBydWluc3xlbnwwfHx8fDE3NjYwMzIyNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "jungle ruins"
+    },
+    {
+      "id": "movie-poster-6",
+      "description": "Chronos Detective Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1709997098518-913accb9e440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxub2lyJTIwZGV0ZWN0aXZlfGVufDB8fHx8MTc2NjA2Njk2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "noir detective"
+    },
+    {
+      "id": "movie-poster-7",
+      "description": "Hearts of Steel Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1760204978375-3a661ba765c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXIlMjBkcmFtYXxlbnwwfHx8fDE3NjYxMjA0OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "war drama"
+    },
+    {
+      "id": "movie-poster-8",
+      "description": "Laugh Riot Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1611956425642-d5a8169abd63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb21lZHklMjBzdGFnZXxlbnwwfHx8fDE3NjYwMjcxMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "comedy stage"
+    },
+    {
+      "id": "movie-poster-9",
+      "description": "The Wandering Earth Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1710678245412-4da3b78b4099?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwbGFuZXQlMjBzcGFjZXxlbnwwfHx8fDE3NjYxMjA0OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "planet space"
+    },
+    {
+      "id": "movie-poster-10",
+      "description": "Forgotten Realms Movie Poster",
+      "imageUrl": "https://images.unsplash.com/photo-1665077713402-ad959854d778?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmYW50YXN5JTIwbWFwfGVufDB8fHx8MTc2NjA1MDUwNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy map"
+    }
+  ]
 }
