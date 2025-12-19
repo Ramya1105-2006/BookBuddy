@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 
 const topGenres = ['Action', 'Romance', 'Thriller', 'Sci-Fi', 'Horror'];
@@ -23,11 +24,18 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState('kollywood');
 
   const featuredMovies = movies.slice(0, 5);
-  const top10Movies = movies.slice(0, 10);
   const trendingMovies = movies.filter(m => m.rating > 8.5);
 
   const getMoviesByGenre = (genre: string) => movies.filter(m => m.genre.includes(genre));
   const getMoviesByLanguage = (language: string) => movies.filter(m => m.language === language);
+  
+  const top10Hollywood = movies.filter(m => m.language === 'English').slice(0, 10);
+  const top10Kollywood = movies.filter(m => m.language === 'Tamil').slice(0, 10);
+  const top10Bollywood = movies.filter(m => m.language === 'Hindi').slice(0, 10);
+  const topAction = movies.filter(m => m.genre.includes('Action')).slice(0, 10);
+  const topRomance = movies.filter(m => m.genre.includes('Romance')).slice(0, 10);
+  const topThriller = movies.filter(m => m.genre.includes('Thriller')).slice(0, 10);
+  const topSciFi = movies.filter(m => m.genre.includes('Sci-Fi')).slice(0, 10);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -38,12 +46,52 @@ export default function HomePage() {
           {/* Top 10 Movies Section */}
           <section>
             <h2 className="text-3xl font-bold tracking-tighter mb-6">Top 10 Movies</h2>
-            {/* This is a placeholder for the tab functionality */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {top10Movies.map(movie => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-            </div>
+             <Tabs defaultValue="kollywood" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 mb-6">
+                <TabsTrigger value="kollywood">Kollywood</TabsTrigger>
+                <TabsTrigger value="bollywood">Bollywood</TabsTrigger>
+                <TabsTrigger value="hollywood">Hollywood</TabsTrigger>
+                <TabsTrigger value="action">Action</TabsTrigger>
+                <TabsTrigger value="romance">Romance</TabsTrigger>
+                <TabsTrigger value="thriller">Thriller</TabsTrigger>
+                <TabsTrigger value="sci-fi">Sci-Fi</TabsTrigger>
+              </TabsList>
+              <TabsContent value="kollywood">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                  {top10Kollywood.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+              <TabsContent value="bollywood">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {top10Bollywood.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+              <TabsContent value="hollywood">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {top10Hollywood.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+               <TabsContent value="action">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {topAction.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+              <TabsContent value="romance">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {topRomance.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+              <TabsContent value="thriller">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {topThriller.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+              <TabsContent value="sci-fi">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {topSciFi.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                </div>
+              </TabsContent>
+            </Tabs>
           </section>
 
           {/* Trending Now Section */}
