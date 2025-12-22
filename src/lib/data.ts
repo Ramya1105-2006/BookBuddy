@@ -24,7 +24,7 @@ export const movies: Movie[] = [
     id: 'movie-4',
     title: "K.G.F: Chapter 2",
     description: 'In the blood-soaked Kolar Gold Fields, Rocky\'s name strikes fear into his foes. While his allies look up to him, the government sees him as a threat to law and order.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/udMkdI31KZ9y3r6ke4P8a02s2h.jpg',
+    posterUrl: 'https://image.tmdb.org/t/p/w500/kGFnC21eYxg2V2a2s4S7iC3h3e.jpg',
     posterHint: 'powerful man',
     language: 'Kannada',
     genre: ['Action', 'Crime', 'Drama'],
@@ -35,7 +35,7 @@ export const movies: Movie[] = [
     id: 'movie-5',
     title: 'RRR',
     description: 'A fictitious story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/uS1A15s0mC73s89e2Q2n2U4Sg3S.jpg',
+    posterUrl: 'https://image.tmdb.org/t/p/w500/wELeI2rvf20EkxaL3A6nKrfzL5.jpg',
     posterHint: 'two heroes',
     language: 'Telugu',
     genre: ['Action', 'Drama'],
@@ -90,7 +90,7 @@ export const movies: Movie[] = [
     id: 'movie-14',
     title: 'Andhadhun',
     description: 'A series of mysterious events change the life of a blind pianist, who must now report a crime that he should technically not know about.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/wAARi3Y2CAdA0sD8OK8n6I62GmA.jpg',
+    posterUrl: 'https://image.tmdb.org/t/p/w500/dy3v3g9s3g3v3g9s3g3v3g9s3.jpg',
     posterHint: 'blind pianist',
     language: 'Hindi',
     genre: ['Crime', 'Thriller'],
@@ -258,3 +258,5 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
     }, 1500); // Simulate network delay
   });
 };
+
+    
