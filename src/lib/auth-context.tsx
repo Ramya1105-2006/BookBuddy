@@ -14,7 +14,7 @@ const getUsersFromStorage = (): User[] => {
     }
     // Seed with initial user if none exist
     const initialUsers: User[] = [
-      { id: 'user-1', name: 'John Doe', email: 'john@example.com', password: 'password123' },
+      { id: 'user-1', name: 'John Doe', email: 'john@example.com', password: 'password123', avatarUrl: '' },
     ];
     localStorage.setItem('bookbuddy-users', JSON.stringify(initialUsers));
     return initialUsers;
@@ -39,6 +39,7 @@ export interface AuthContextType {
   login: (email: string, pass: string) => Promise<User | null>;
   signup: (name: string, email: string, pass: string) => Promise<User | null>;
   logout: () => void;
+  updateUser: (data: { name: string; avatarUrl?: string }) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -64,7 +65,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const foundUser = users.find(u => u.email === email && u.password === pass);
     
     if (foundUser) {
-      const userToStore = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
+      const { password, ...userToStore } = foundUser;
       setUser(userToStore);
       localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
       setLoading(false);
@@ -87,16 +88,39 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       name,
       email,
       password: pass,
+      avatarUrl: ''
     };
     
     const updatedUsers = [...users, newUser];
     saveUsersToStorage(updatedUsers);
     
-    const userToStore = { id: newUser.id, name: newUser.name, email: newUser.email };
+    const { password, ...userToStore } = newUser;
     setUser(userToStore);
     localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
     setLoading(false);
     return userToStore;
+  };
+  
+  const updateUser = async (data: { name: string; avatarUrl?: string }): Promise<void> => {
+    if (!user) throw new Error("You must be logged in to update your profile.");
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const users = getUsersFromStorage();
+            const userIndex = users.findIndex(u => u.id === user.id);
+
+            if (userIndex !== -1) {
+                const updatedUser = { ...users[userIndex], ...data };
+                users[userIndex] = updatedUser;
+                saveUsersToStorage(users);
+                
+                const { password, ...userToStore } = updatedUser;
+                setUser(userToStore);
+                localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
+            }
+            resolve();
+        }, 500);
+    });
   };
 
   const logout = () => {
@@ -105,7 +129,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
