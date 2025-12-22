@@ -5,32 +5,10 @@ export const users: User[] = [
 ];
 
 export const genres = ['Sci-Fi', 'Cyberpunk', 'Fantasy', 'Adventure', 'Action', 'Drama', 'Comedy', 'Mystery', 'War', 'Romance', 'Thriller', 'Horror', 'Crime', 'Biography', 'Sport'];
-export const languages = ['English', 'Mandarin', 'Spanish', 'Tamil', 'Telugu', 'Malayalam', 'Kannada', 'Hindi'];
+export const languages = ['English', 'Tamil', 'Telugu', 'Malayalam', 'Kannada', 'Hindi'];
 
 export const movies: Movie[] = [
-  {
-    id: 'movie-1',
-    title: 'Inception',
-    description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
-    posterUrl: 'https://picsum.photos/seed/inception/800/1200',
-    posterHint: 'abstract cityscape',
-    language: 'English',
-    genre: ['Action', 'Adventure', 'Sci-Fi'],
-    duration: 148,
-    rating: 8.8,
-  },
-  {
-    id: 'movie-2',
-    title: 'The Dark Knight',
-    description: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
-    posterUrl: 'https://picsum.photos/seed/darkknight/800/1200',
-    posterHint: 'dark hero',
-    language: 'English',
-    genre: ['Action', 'Crime', 'Drama'],
-    duration: 152,
-    rating: 9.0,
-  },
-  {
+    {
     id: 'movie-3',
     title: 'Vikram',
     description: 'A special agent investigates a murder committed by a masked group of serial killers. However, a tangled web of clues leads him to the drug kingpin of Chennai.',
@@ -72,50 +50,6 @@ export const movies: Movie[] = [
     language: 'Hindi',
     genre: ['Action', 'Biography', 'Drama'],
     duration: 161,
-    rating: 8.4,
-  },
-  {
-    id: 'movie-7',
-    title: 'Interstellar',
-    description: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',
-    posterUrl: 'https://picsum.photos/seed/interstellar/800/1200',
-    posterHint: 'space astronaut',
-    language: 'English',
-    genre: ['Adventure', 'Drama', 'Sci-Fi'],
-    duration: 169,
-    rating: 8.6,
-  },
-  {
-    id: 'movie-8',
-    title: 'Parasite',
-    description: 'Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.',
-    posterUrl: 'https://picsum.photos/seed/parasite/800/1200',
-    posterHint: 'family drama',
-    language: 'English', // Assuming for filter purposes
-    genre: ['Comedy', 'Drama', 'Thriller'],
-    duration: 132,
-    rating: 8.6,
-  },
-  {
-    id: 'movie-9',
-    title: 'The Wandering Earth',
-    description: 'As the sun is dying out, people all around the world build giant planet thrusters to move Earth out of its orbit and sail Earth to a new star system.',
-    posterUrl: 'https://picsum.photos/seed/wanderingearth/800/1200',
-    posterHint: 'planet space',
-    language: 'Mandarin',
-    genre: ['Sci-Fi', 'Action'],
-    duration: 125,
-    rating: 7.9,
-  },
-  {
-    id: 'movie-10',
-    title: 'Avengers: Endgame',
-    description: 'Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.',
-    posterUrl: 'https://picsum.photos/seed/endgame/800/1200',
-    posterHint: 'superhero team',
-    language: 'English',
-    genre: ['Action', 'Adventure', 'Drama'],
-    duration: 181,
     rating: 8.4,
   },
    {
@@ -162,6 +96,72 @@ export const movies: Movie[] = [
     duration: 139,
     rating: 8.2,
   },
+  {
+    id: 'movie-15',
+    title: 'Bahubali: The Beginning',
+    description: 'In the kingdom of Mahishmati, a chivalrous warrior named Sivudu, while pursuing his love, finds himself in a new world of adventure, war, and deceit.',
+    posterUrl: 'https://picsum.photos/seed/bahubali1/800/1200',
+    posterHint: 'epic warrior',
+    language: 'Telugu',
+    genre: ['Action', 'Drama'],
+    duration: 159,
+    rating: 8.0,
+  },
+  {
+    id: 'movie-16',
+    title: 'Manjummel Boys',
+    description: 'A group of friends get into a daring rescue mission to save their friend from Guna Caves, a perilously deep pit from where nobody has ever been brought back.',
+    posterUrl: 'https://picsum.photos/seed/manjummel/800/1200',
+    posterHint: 'friends cave rescue',
+    language: 'Malayalam',
+    genre: ['Adventure', 'Thriller'],
+    duration: 135,
+    rating: 8.6,
+  },
+  {
+    id: 'movie-17',
+    title: 'Jai Bhim',
+    description: 'When a tribal man is arrested for a case of alleged theft, his wife turns to a human-rights lawyer to help bring justice.',
+    posterUrl: 'https://picsum.photos/seed/jaibhim/800/1200',
+    posterHint: 'lawyer justice',
+    language: 'Tamil',
+    genre: ['Crime', 'Drama'],
+    duration: 164,
+    rating: 8.9,
+  },
+  {
+    id: 'movie-18',
+    title: 'Kantara',
+    description: 'When greed paves the way for betrayal, scheming and murder, a young tribal reluctantly dons the traditions of his ancestors to seek justice.',
+    posterUrl: 'https://picsum.photos/seed/kantara/800/1200',
+    posterHint: 'tribal ritual',
+    language: 'Kannada',
+    genre: ['Action', 'Adventure', 'Drama'],
+    duration: 148,
+    rating: 8.3,
+  },
+  {
+    id: 'movie-1',
+    title: 'Jawan',
+    description: 'A high-octane action thriller that outlines the emotional journey of a man who is set to rectify the wrongs in the society.',
+    posterUrl: 'https://picsum.photos/seed/jawan/800/1200',
+    posterHint: 'action hero pose',
+    language: 'Hindi',
+    genre: ['Action', 'Thriller'],
+    duration: 169,
+    rating: 7.0,
+  },
+   {
+    id: 'movie-2',
+    title: 'Leo',
+    description: 'Parthiban is a mild-mannered cafe owner in Kashmir, who fends off a gang of murderous thugs and gains local fame. This brings him to the attention of a drug cartel who claim that he was once a part of them.',
+    posterUrl: 'https://picsum.photos/seed/leo/800/1200',
+    posterHint: 'intense man',
+    language: 'Tamil',
+    genre: ['Action', 'Crime', 'Drama'],
+    duration: 164,
+    rating: 7.2,
+  },
 ];
 
 const generateBookedSeats = (totalSeats: number, fraction: number): string[] => {
@@ -194,18 +194,18 @@ const shows: Show[] = [
 export const cities: City[] = [
   {
     id: 'city-1',
-    name: 'Metropolis',
+    name: 'Chennai',
     theatres: [
-      { id: 'theatre-1', name: 'Grand Cinemax', address: '123 Film Row', shows: [shows[0], shows[1], shows[2]] },
-      { id: 'theatre-2', name: 'The Picture Palace', address: '456 Movie Lane', shows: [shows[3], shows[4], shows[5]] },
+      { id: 'theatre-1', name: 'PVR Cinemas, Grand Galada', address: 'Pallavaram, Chennai', shows: [shows[0], shows[1], shows[2]] },
+      { id: 'theatre-2', name: 'AGS Cinemas, T. Nagar', address: 'T. Nagar, Chennai', shows: [shows[3], shows[4], shows[5]] },
     ],
   },
   {
     id: 'city-2',
-    name: 'Gotham',
+    name: 'Mumbai',
     theatres: [
-      { id: 'theatre-3', name: 'Artisan Films', address: '789 Indie Blvd', shows: [shows[0], shows[4], shows[2]] },
-      { id: 'theatre-4', name: 'Multiplex 3000', address: '101 Blockbuster Ave', shows: [shows[3], shows[1], shows[5]] },
+      { id: 'theatre-3', name: 'INOX, Atria Mall', address: 'Worli, Mumbai', shows: [shows[0], shows[4], shows[2]] },
+      { id: 'theatre-4', name: 'Cinepolis, Andheri', address: 'Andheri West, Mumbai', shows: [shows[3], shows[1], shows[5]] },
     ],
   },
 ];
