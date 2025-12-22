@@ -1,7 +1,7 @@
 "use client";
 
 import { notFound, useParams } from 'next/navigation';
-import { bookings, movies, cities } from '@/lib/data';
+import { movies, cities } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { CheckCircle2 } from 'lucide-react';
@@ -9,13 +9,31 @@ import { useEffect, useState } from 'react';
 import { Booking } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 
+// Helper function to get bookings from localStorage
+const getBookingsFromStorage = (): Booking[] => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const storedBookings = localStorage.getItem('bookbuddy-bookings');
+    if (storedBookings) {
+      const parsed = JSON.parse(storedBookings);
+      return parsed.map((b: any) => ({ ...b, bookingTime: new Date(b.bookingTime) }));
+    }
+    return [];
+  } catch (error) {
+    console.error("Failed to read bookings from localStorage", error);
+    return [];
+  }
+};
+
+
 export default function ConfirmationPage() {
   const params = useParams();
   const bookingId = params.bookingId as string;
   const [booking, setBooking] = useState<Booking | null | undefined>(undefined);
 
   useEffect(() => {
-    const foundBooking = bookings.find(b => b.id === bookingId);
+    const allBookings = getBookingsFromStorage();
+    const foundBooking = allBookings.find(b => b.id === bookingId);
     setBooking(foundBooking || null);
   }, [bookingId]);
 

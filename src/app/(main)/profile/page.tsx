@@ -3,20 +3,49 @@
 import { useAuth } from '@/hooks/use-auth';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { bookings, movies } from '@/lib/data';
+import { movies } from '@/lib/data';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Ticket } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Booking } from '@/lib/types';
+
+// Helper function to get bookings from localStorage
+const getBookingsFromStorage = (): Booking[] => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const storedBookings = localStorage.getItem('bookbuddy-bookings');
+    if (storedBookings) {
+      const parsed = JSON.parse(storedBookings);
+      // Revive date objects
+      return parsed.map((b: any) => ({ ...b, bookingTime: new Date(b.bookingTime) }));
+    }
+    return [];
+  } catch (error) {
+    console.error("Failed to read bookings from localStorage", error);
+    return [];
+  }
+};
+
 
 export default function ProfilePage() {
   const { user } = useAuth();
+  const [userBookings, setUserBookings] = useState<Booking[]>([]);
+
+  useEffect(() => {
+    if (user) {
+      const allBookings = getBookingsFromStorage();
+      const filteredBookings = allBookings
+        .filter(b => b.userId === user.id)
+        .sort((a, b) => new Date(b.bookingTime).getTime() - new Date(a.bookingTime).getTime());
+      setUserBookings(filteredBookings);
+    }
+  }, [user]);
   
   if (!user) {
     return null; // Or a loading state
   }
-
-  const userBookings = bookings.filter(b => b.userId === user.id).sort((a, b) => b.bookingTime.getTime() - a.bookingTime.getTime());
   
   const getInitials = (name: string) => name.split(" ").map((n) => n[0]).join("");
 
@@ -46,13 +75,14 @@ export default function ProfilePage() {
                 <ul className="space-y-4">
                   {userBookings.map(booking => {
                     const movie = movies.find(m => m.id === booking.movieId);
+                    const bookingTime = new Date(booking.bookingTime);
                     return (
                       <li key={booking.id}>
                         <div className="flex justify-between items-start">
                           <div>
                             <h3 className="font-semibold">{movie?.title}</h3>
                             <p className="text-sm text-muted-foreground">
-                              {booking.bookingTime.toLocaleDateString()} &bull; {booking.seatNumbers.length} ticket(s)
+                              {bookingTime.toLocaleDateString()} &bull; {booking.seatNumbers.length} ticket(s)
                             </p>
                           </div>
                           <Button asChild variant="outline" size="sm">

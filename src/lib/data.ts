@@ -1,4 +1,5 @@
 
+
 import { Movie, User, City, Booking, Show } from './types';
 
 export const users: User[] = [
@@ -223,7 +224,10 @@ export const cities: City[] = [
   },
 ];
 
-export const bookings: Booking[] = [
+
+const BOOKINGS_STORAGE_KEY = 'bookbuddy-bookings';
+
+const initialBookings: Booking[] = [
     {
         id: 'booking-1',
         userId: 'user-1',
@@ -236,9 +240,35 @@ export const bookings: Booking[] = [
     }
 ];
 
+const getBookingsFromStorage = (): Booking[] => {
+  if (typeof window === 'undefined') return initialBookings;
+  try {
+    const storedBookings = localStorage.getItem(BOOKINGS_STORAGE_KEY);
+    if (storedBookings) {
+      const parsed = JSON.parse(storedBookings);
+      // Revive date objects
+      return parsed.map((b: any) => ({ ...b, bookingTime: new Date(b.bookingTime) }));
+    }
+    localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(initialBookings));
+    return initialBookings;
+  } catch (error) {
+    console.error("Failed to read bookings from localStorage", error);
+    return initialBookings;
+  }
+};
+
+const saveBookingsToStorage = (bookings: Booking[]) => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(bookings));
+  } catch (error) {
+    console.error("Failed to save bookings to localStorage", error);
+  }
+};
+
+export const bookings = getBookingsFromStorage();
+
 export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTime'>): Promise<Booking> => {
-  // In a real app, this would interact with a database and a payment gateway.
-  // We'll simulate that here.
   return new Promise(resolve => {
     setTimeout(() => {
       const newBooking: Booking = {
@@ -247,10 +277,14 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
         bookingTime: new Date(),
       };
       
-      // Add booking to our mock database
-      bookings.push(newBooking);
+      const currentBookings = getBookingsFromStorage();
+      const updatedBookings = [...currentBookings, newBooking];
+      saveBookingsToStorage(updatedBookings);
 
-      // Update booked seats for the show
+      // We update the local `bookings` array as well for immediate reflection in UI
+      bookings.length = 0;
+      Array.prototype.push.apply(bookings, updatedBookings);
+      
       const city = cities.find(c => c.theatres.some(t => t.id === bookingData.theatreId));
       const theatre = city?.theatres.find(t => t.id === bookingData.theatreId);
       const show = theatre?.shows.find(s => s.id === bookingData.showId);
@@ -259,6 +293,6 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
       }
 
       resolve(newBooking);
-    }, 1500); // Simulate network delay
+    }, 1500); 
   });
 };
