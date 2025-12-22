@@ -145,7 +145,7 @@ export const movies: Movie[] = [
     id: 'movie-1',
     title: 'Jawan',
     description: 'A high-octane action thriller that outlines the emotional journey of a man who is set to rectify the wrongs in the society.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/jJb2s2j2j2j2j2j2j2j2j2j2j.jpg',
+    posterUrl: 'https://tse3.mm.bing.net/th/id/OIP.MUf__Y8RzGJ2j6MATG7W6AHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3',
     posterHint: 'action hero pose',
     language: 'Hindi',
     genre: ['Action', 'Thriller'],
