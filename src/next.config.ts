@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
+        protocol: 'https,',
         hostname: 'm.media-amazon.com',
         port: '',
         pathname: '/**',
@@ -95,12 +95,6 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'www.m9.news',
-        port: '',
-        pathname: '/**',
-      },
     ],
   },
 };
@@ -108,3 +102,6 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 
 
+
+
+    
