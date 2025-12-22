@@ -101,7 +101,7 @@ export const movies: Movie[] = [
     id: 'movie-15',
     title: 'Bahubali: The Beginning',
     description: 'In the kingdom of Mahishmati, a chivalrous warrior named Sivudu, while pursuing his love, finds himself in a new world of adventure, war, and deceit.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/fT3m21N9Qx1t3o4a2a1t3o4.jpg',
+    posterUrl: 'https://th.bing.com/th/id/R.9d349aef87ca4250f7efb3bdc97e4bf0?rik=aTsZ2JwjirlD5Q&riu=http%3a%2f%2f3.bp.blogspot.com%2f-1fQ-VGc3g8c%2fVZ-yzRaY0JI%2fAAAAAAAABPM%2foeh4Lt6MHHo%2fs1600%2fBaahubali%252BShivudu.jpg&ehk=jfNjvyINaLxxosVxM%2bq6ckGHxLKkZ4%2fp3pINdoB7iPg%3d&risl=&pid=ImgRaw&r=0',
     posterHint: 'epic warrior',
     language: 'Telugu',
     genre: ['Action', 'Drama'],
