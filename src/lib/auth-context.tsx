@@ -1,8 +1,9 @@
+
 "use client";
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/lib/types';
-import { users } from '@/lib/data';
+import { users, addUser } from '@/lib/data';
 
 export interface AuthContextType {
   user: User | null;
@@ -19,8 +20,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // This is a mock auth state persistence.
-    // In a real app, you'd check localStorage, a cookie, or an auth service.
     const storedUser = localStorage.getItem('bookbuddy-user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -30,15 +29,15 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, pass: string): Promise<User | null> => {
     setLoading(true);
-    // This is a mock login.
-    const foundUser = users.find(u => u.email === email);
+    // In a real app, you would verify the password against a hashed version in the database.
+    // For this mock, we'll compare plaintext passwords.
+    const foundUser = users.find(u => u.email === email && u.password === pass);
     if (foundUser) {
-      // In a real app, you would verify the password here.
-      // For this mock, we'll just accept any password for a known email.
-      setUser(foundUser);
-      localStorage.setItem('bookbuddy-user', JSON.stringify(foundUser));
+      const userToStore = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
+      setUser(userToStore);
+      localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
       setLoading(false);
-      return foundUser;
+      return userToStore;
     }
     setLoading(false);
     throw new Error("Invalid email or password.");
@@ -46,7 +45,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const signup = async (name: string, email: string, pass: string): Promise<User | null> => {
     setLoading(true);
-    // This is a mock signup.
      if (users.some(u => u.email === email)) {
         setLoading(false);
         throw new Error("An account with this email already exists.");
@@ -56,12 +54,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       id: `user-${Date.now()}`,
       name,
       email,
+      password: pass,
     };
-    users.push(newUser); // In a real app, you would save this to your database.
-    setUser(newUser);
-    localStorage.setItem('bookbuddy-user', JSON.stringify(newUser));
+    addUser(newUser); 
+    const userToStore = { id: newUser.id, name: newUser.name, email: newUser.email };
+    setUser(userToStore);
+    localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
     setLoading(false);
-    return newUser;
+    return userToStore;
   };
 
   const logout = () => {

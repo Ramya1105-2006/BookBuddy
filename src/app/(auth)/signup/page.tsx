@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,7 +51,7 @@ export default function SignupPage() {
       if (user) {
         toast({
           title: "Account Created",
-          description: "Welcome to BookBuddy!",
+          description: "Welcome to BookBuddy! You are now logged in.",
         });
         router.push("/home");
       }

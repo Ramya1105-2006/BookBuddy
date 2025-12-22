@@ -2,8 +2,12 @@
 import { Movie, User, City, Booking, Show } from './types';
 
 export const users: User[] = [
-  { id: 'user-1', name: 'John Doe', email: 'john@example.com' },
+  { id: 'user-1', name: 'John Doe', email: 'john@example.com', password: 'password123' },
 ];
+
+export const addUser = (user: User) => {
+    users.push(user);
+}
 
 export const genres = ['Sci-Fi', 'Cyberpunk', 'Fantasy', 'Adventure', 'Action', 'Drama', 'Comedy', 'Mystery', 'War', 'Romance', 'Thriller', 'Horror', 'Crime', 'Biography', 'Sport'];
 export const languages = ['English', 'Tamil', 'Telugu', 'Malayalam', 'Kannada', 'Hindi'];
@@ -258,13 +262,3 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
     }, 1500); // Simulate network delay
   });
 };
-
-    
-    
-
-    
-
-
-
-
-    

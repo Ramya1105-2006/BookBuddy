@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -42,6 +43,7 @@ export default function SeatSelectionPage({ params }: { params: { movieId: strin
   const handleConfirmBooking = async () => {
     if (!user) {
       toast({ variant: 'destructive', title: 'Error', description: 'You must be logged in to book tickets.' });
+      router.push('/login');
       return;
     }
     if (selectedSeats.length === 0) {
