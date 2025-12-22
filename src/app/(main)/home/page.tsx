@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import { movies } from '@/lib/data';
 import { MovieCard } from '@/components/movie-card';
-import { HeroCarousel } from '@/components/hero-carousel';
 import {
   Carousel,
   CarouselContent,
@@ -18,7 +17,6 @@ const topGenres = ['Action', 'Romance', 'Thriller', 'Sci-Fi', 'Horror'];
 const topLanguages = ['English', 'Tamil', 'Hindi', 'Malayalam', 'Kannada', 'Telugu'];
 
 export default function HomePage() {
-  const featuredMovies = movies.slice(0, 5);
   const trendingMovies = movies.filter(m => m.rating > 8.5);
   const top10Movies = [...movies].sort((a, b) => b.rating - a.rating).slice(0, 10);
 
@@ -28,8 +26,6 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
-        <HeroCarousel movies={featuredMovies} />
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
           {/* Top 10 Movies Section */}
           <section>
@@ -126,5 +122,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
