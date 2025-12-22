@@ -90,7 +90,7 @@ export const movies: Movie[] = [
     id: 'movie-14',
     title: 'Andhadhun',
     description: 'A series of mysterious events change the life of a blind pianist, who must now report a crime that he should technically not know about.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/dy3v3g9s3g3v3g9s3g3v3g9s3.jpg',
+    posterUrl: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/96245c69898165.5b96482709d56.jpg',
     posterHint: 'blind pianist',
     language: 'Hindi',
     genre: ['Crime', 'Thriller'],
