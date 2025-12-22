@@ -13,7 +13,7 @@ export const movies: Movie[] = [
     id: 'movie-3',
     title: 'Vikram',
     description: 'A special agent investigates a murder committed by a masked group of serial killers. However, a tangled web of clues leads him to the drug kingpin of Chennai.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/rSCl3n9ub6s4SseOzp4c2s3vVlR.jpg',
+    posterUrl: 'https://tse4.mm.bing.net/th/id/OIP._Vd7yA0EN7tv8300pRZvjgHaLP?rs=1&pid=ImgDetMain&o=7&rm=3',
     posterHint: 'action hero',
     language: 'Tamil',
     genre: ['Action', 'Thriller'],
@@ -90,7 +90,7 @@ export const movies: Movie[] = [
     id: 'movie-14',
     title: 'Andhadhun',
     description: 'A series of mysterious events change the life of a blind pianist, who must now report a crime that he should technically not know about.',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/dy3v3g9s3g3v3g9s3g3v3g9s3.jpg',
+    posterUrl: 'https://image.tmdb.org/t/p/w500/4JPErJd2Nc8Fj4aD7Hn1aDkP9p5.jpg',
     posterHint: 'blind pianist',
     language: 'Hindi',
     genre: ['Crime', 'Thriller'],
@@ -259,4 +259,5 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
   });
 };
 
+    
     
