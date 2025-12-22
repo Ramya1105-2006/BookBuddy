@@ -79,7 +79,7 @@ export const movies: Movie[] = [
     id: 'movie-13',
     title: '3 Idiots',
     description: 'Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them "idiots".',
-    posterUrl: 'https://image.tmdb.org/t/p/w500/66A9454v3d3aL3a12uUv3d3a.jpg',
+    posterUrl: 'https://m.media-amazon.com/images/S/pv-target-images/0e767d7b964d2469c89d242d6bc4d6619e2eec1c4829a6c8d97055a108e78a5b.jpg',
     posterHint: 'college friends',
     language: 'Hindi',
     genre: ['Comedy', 'Drama'],
