@@ -1,13 +1,20 @@
 
 
+
 import { Movie, User, City, Booking, Show } from './types';
 
+// The canonical source for users is now localStorage, managed in auth-context.tsx
+// This initial array is now only used to seed localStorage on first load.
 export const users: User[] = [
   { id: 'user-1', name: 'John Doe', email: 'john@example.com', password: 'password123' },
 ];
 
 export const addUser = (user: User) => {
-    users.push(user);
+    // This function is no longer the primary way to add users. 
+    // It's kept for potential direct data manipulation, but signup flow now uses localStorage.
+    const storedUsers = JSON.parse(localStorage.getItem('bookbuddy-users') || '[]');
+    storedUsers.push(user);
+    localStorage.setItem('bookbuddy-users', JSON.stringify(storedUsers));
 }
 
 export const genres = ['Sci-Fi', 'Cyberpunk', 'Fantasy', 'Adventure', 'Action', 'Drama', 'Comedy', 'Mystery', 'War', 'Romance', 'Thriller', 'Horror', 'Crime', 'Biography', 'Sport'];
@@ -227,35 +234,40 @@ export const cities: City[] = [
 
 const BOOKINGS_STORAGE_KEY = 'bookbuddy-bookings';
 
-const initialBookings: Booking[] = [
-    {
-        id: 'booking-1',
-        userId: 'user-1',
-        movieId: 'movie-1',
-        theatreId: 'theatre-1',
-        showId: 'show-1',
-        seatNumbers: ['C5', 'C6'],
-        totalAmount: 300.00,
-        bookingTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) // 3 days ago
-    }
-];
-
-const getBookingsFromStorage = (): Booking[] => {
-  if (typeof window === 'undefined') return initialBookings;
+// Helper to get initial bookings or from localStorage
+const getInitialBookings = (): Booking[] => {
+  if (typeof window === 'undefined') return [];
   try {
-    const storedBookings = localStorage.getItem(BOOKINGS_STORAGE_KEY);
-    if (storedBookings) {
-      const parsed = JSON.parse(storedBookings);
-      // Revive date objects
+    const stored = localStorage.getItem(BOOKINGS_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
       return parsed.map((b: any) => ({ ...b, bookingTime: new Date(b.bookingTime) }));
     }
-    localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(initialBookings));
-    return initialBookings;
   } catch (error) {
     console.error("Failed to read bookings from localStorage", error);
-    return initialBookings;
   }
+  
+  // If nothing in storage, seed with initial data and save
+  const initialBookings: Booking[] = [
+    {
+      id: 'booking-1',
+      userId: 'user-1',
+      movieId: 'movie-1',
+      theatreId: 'theatre-1',
+      showId: 'show-1',
+      seatNumbers: ['C5', 'C6'],
+      totalAmount: 300.00,
+      bookingTime: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) // 3 days ago
+    }
+  ];
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(initialBookings));
+  }
+  return initialBookings;
 };
+
+// Initialize bookings from localStorage
+export const bookings = getInitialBookings();
 
 const saveBookingsToStorage = (bookings: Booking[]) => {
   if (typeof window === 'undefined') return;
@@ -266,8 +278,6 @@ const saveBookingsToStorage = (bookings: Booking[]) => {
   }
 };
 
-export const bookings = getBookingsFromStorage();
-
 export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTime'>): Promise<Booking> => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -277,7 +287,7 @@ export const createBooking = async (bookingData: Omit<Booking, 'id' | 'bookingTi
         bookingTime: new Date(),
       };
       
-      const currentBookings = getBookingsFromStorage();
+      const currentBookings = getInitialBookings();
       const updatedBookings = [...currentBookings, newBooking];
       saveBookingsToStorage(updatedBookings);
 

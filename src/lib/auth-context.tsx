@@ -3,7 +3,35 @@
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/lib/types';
-import { users, addUser } from '@/lib/data';
+
+// Helper functions to manage users in localStorage
+const getUsersFromStorage = (): User[] => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const storedUsers = localStorage.getItem('bookbuddy-users');
+    if (storedUsers) {
+      return JSON.parse(storedUsers);
+    }
+    // Seed with initial user if none exist
+    const initialUsers: User[] = [
+      { id: 'user-1', name: 'John Doe', email: 'john@example.com', password: 'password123' },
+    ];
+    localStorage.setItem('bookbuddy-users', JSON.stringify(initialUsers));
+    return initialUsers;
+  } catch (error) {
+    console.error("Failed to read users from localStorage", error);
+    return [];
+  }
+};
+
+const saveUsersToStorage = (users: User[]) => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem('bookbuddy-users', JSON.stringify(users));
+  } catch (error) {
+    console.error("Failed to save users to localStorage", error);
+  }
+};
 
 export interface AuthContextType {
   user: User | null;
@@ -20,6 +48,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize users in storage if not already there
+    getUsersFromStorage(); 
+    
     const storedUser = localStorage.getItem('bookbuddy-user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -29,9 +60,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, pass: string): Promise<User | null> => {
     setLoading(true);
-    // In a real app, you would verify the password against a hashed version in the database.
-    // For this mock, we'll compare plaintext passwords.
+    const users = getUsersFromStorage();
     const foundUser = users.find(u => u.email === email && u.password === pass);
+    
     if (foundUser) {
       const userToStore = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
       setUser(userToStore);
@@ -45,7 +76,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const signup = async (name: string, email: string, pass: string): Promise<User | null> => {
     setLoading(true);
-     if (users.some(u => u.email === email)) {
+    const users = getUsersFromStorage();
+    if (users.some(u => u.email === email)) {
         setLoading(false);
         throw new Error("An account with this email already exists.");
     }
@@ -56,7 +88,10 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       email,
       password: pass,
     };
-    addUser(newUser); 
+    
+    const updatedUsers = [...users, newUser];
+    saveUsersToStorage(updatedUsers);
+    
     const userToStore = { id: newUser.id, name: newUser.name, email: newUser.email };
     setUser(userToStore);
     localStorage.setItem('bookbuddy-user', JSON.stringify(userToStore));
